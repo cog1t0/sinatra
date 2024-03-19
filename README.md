@@ -6,6 +6,8 @@ tags:
   - sinatra
 ---
 
+2024 LINEBotAward用
+
 # Sinatra Example
 
 This example is a simple [Sinatra](http://sinatrarb.com) webserver.
