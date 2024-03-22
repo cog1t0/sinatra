@@ -32,11 +32,14 @@ post '/callback' do
         text_from = event.message['text']
         text_to = text_from
         if text_from == 'スシ'
-          text_to = "スプラシューターを選択しました #{event['source']['userId']}"
+          text_to = "スプラシューターを選択しました"
+          client.link_user_rich_menu(event['source']['userId'], 'richmenu-2ae9ed24b7e47100a20a3cbe2db76db4')
         elsif text_from == 'ソイカス'
           text_to = 'ソイチューバーカスタムを選択しました'
+          client.link_user_rich_menu(event['source']['userId'], 'richmenu-b6143e6e08b9c3974583207969c10c26')
         elsif text_from == 'ヴァリフォイ'
           text_to = 'ヴァリアブルローラーフォイルを選択しました'
+          client.link_user_rich_menu(event['source']['userId'], 'richmenu-dcd8f5f536793e5aac8688d0d7896e8f')
         end
         message = {
           type: 'text',
