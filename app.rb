@@ -28,9 +28,19 @@ post '/callback' do
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
+        puts event
+        text_from = event.message['text']
+        text_to = text_from
+        if text_from == 'スシ'
+          text_to = 'スプラシューターを選択しました'
+        elsif text_from == 'ソイカス'
+          text_to = 'ソイチューバーカスタムを選択しました'
+        elsif text_from == 'ヴァリフォイ'
+          text_to = 'ヴァリアブルローラーフォイルを選択しました'
+        end
         message = {
           type: 'text',
-          text: event.message['text']
+          text: text_to
         }
         client.reply_message(event['replyToken'], message)
       when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
