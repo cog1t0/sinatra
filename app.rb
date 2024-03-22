@@ -32,7 +32,7 @@ post '/callback' do
         text_from = event.message['text']
         text_to = text_from
         if text_from == 'スシ'
-          text_to = 'スプラシューターを選択しました'
+          text_to = "スプラシューターを選択しました #{event['source']['userId']}"
         elsif text_from == 'ソイカス'
           text_to = 'ソイチューバーカスタムを選択しました'
         elsif text_from == 'ヴァリフォイ'
