@@ -33,13 +33,13 @@ post '/callback' do
         text_to = text_from
         if text_from == 'スシ'
           text_to = "スプラシューターを選択しました"
-          client.link_user_rich_menu(event['source']['userId'], 'richmenu-2ae9ed24b7e47100a20a3cbe2db76db4')
+          client.link_user_rich_menu(event['source']['userId'], 'richmenu-b7a9c28e9b881ee8a86847637625b34b')
         elsif text_from == 'ソイカス'
           text_to = 'ソイチューバーカスタムを選択しました'
-          client.link_user_rich_menu(event['source']['userId'], 'richmenu-b6143e6e08b9c3974583207969c10c26')
+          client.link_user_rich_menu(event['source']['userId'], 'richmenu-5bf3e96d0cb61e1d05cd468767c8b9b4')
         elsif text_from == 'ヴァリフォイ'
           text_to = 'ヴァリアブルローラーフォイルを選択しました'
-          client.link_user_rich_menu(event['source']['userId'], 'richmenu-dcd8f5f536793e5aac8688d0d7896e8f')
+          client.link_user_rich_menu(event['source']['userId'], 'richmenu-4e2542ec68e2c88d4bef8049fa2bcf6a')
         end
         message = {
           type: 'text',
@@ -51,6 +51,12 @@ post '/callback' do
         tf = Tempfile.open("content")
         tf.write(response.body)
       end
+    when Line::Bot::Event::Postback
+      message = {
+          type: 'text',
+          text: event.postback
+        }
+        client.reply_message(event['replyToken'], message)
     end
   end
 
