@@ -33,13 +33,13 @@ post '/callback' do
         text_to = text_from
         if text_from == 'スシ'
           text_to = "スプラシューターを選択しました"
-          client.link_user_rich_menu(event['source']['userId'], 'richmenu-b7a9c28e9b881ee8a86847637625b34b')
+          client.link_user_rich_menu(event['source']['userId'], 'richmenu-415ab9dd80d1d227cf4bd3da80b5cac3')
         elsif text_from == 'ソイカス'
           text_to = 'ソイチューバーカスタムを選択しました'
-          client.link_user_rich_menu(event['source']['userId'], 'richmenu-5bf3e96d0cb61e1d05cd468767c8b9b4')
+          client.link_user_rich_menu(event['source']['userId'], 'richmenu-8e0cbf7a321ea3d76735d4027d48adc1')
         elsif text_from == 'ヴァリフォイ'
           text_to = 'ヴァリアブルローラーフォイルを選択しました'
-          client.link_user_rich_menu(event['source']['userId'], 'richmenu-4e2542ec68e2c88d4bef8049fa2bcf6a')
+          client.link_user_rich_menu(event['source']['userId'], 'richmenu-e98175308059225f4e439d161254e5b0')
         end
         message = {
           type: 'text',
