@@ -52,6 +52,9 @@ post '/callback' do
         tf.write(response.body)
       end
     when Line::Bot::Event::Postback
+      if event['postback']['data'] == 'reset'
+        client.unlink_user_rich_menu(event['source']['userId'])
+      end
       message = {
           type: 'text',
           text: event['postback']['data']
