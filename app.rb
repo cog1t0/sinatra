@@ -54,12 +54,19 @@ post '/callback' do
     when Line::Bot::Event::Postback
       if event['postback']['data'] == 'reset'
         client.unlink_user_rich_menu(event['source']['userId'])
+      elsif event['postback']['data'] == 'random'
+        richmenu_ary = [
+          'richmenu-415ab9dd80d1d227cf4bd3da80b5cac3',
+          'richmenu-8e0cbf7a321ea3d76735d4027d48adc1',
+          'richmenu-e98175308059225f4e439d161254e5b0'
+        ]
+        client.link_user_rich_menu(event['source']['userId'], richmenu_ary.shuffle[0])
       end
-      message = {
-          type: 'text',
-          text: event['postback']['data']
-        }
-        client.reply_message(event['replyToken'], message)
+      # message = {
+      #     type: 'text',
+      #     text: event['postback']['data']
+      #   }
+      #   client.reply_message(event['replyToken'], message)
     end
   end
 
