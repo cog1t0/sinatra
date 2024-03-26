@@ -2,6 +2,10 @@ require 'sinatra'
 require 'line/bot'
 require 'dotenv/load'
 
+richmenu_sushi = 'richmenu-ac64968c50dd58d0b72cea8b30cdf3c0'
+richmenu_soycas = 'richmenu-9747b9b96f824442f0bea147d9bd3817'
+richmenu_valifoi = 'richmenu-f73bacb4b9b10905e65def3527f35533'
+
 get '/' do
   'Choo Choo! Welcome to your Sinatra server 🚅'
 end
@@ -33,13 +37,20 @@ post '/callback' do
         text_to = text_from
         if text_from == 'スシ'
           text_to = "スプラシューターを選択しました"
-          client.link_user_rich_menu(event['source']['userId'], 'richmenu-415ab9dd80d1d227cf4bd3da80b5cac3')
+          client.link_user_rich_menu(event['source']['userId'], richmenu_sushi)
         elsif text_from == 'ソイカス'
           text_to = 'ソイチューバーカスタムを選択しました'
-          client.link_user_rich_menu(event['source']['userId'], 'richmenu-8e0cbf7a321ea3d76735d4027d48adc1')
+          client.link_user_rich_menu(event['source']['userId'], richmenu_soycas)
         elsif text_from == 'ヴァリフォイ'
           text_to = 'ヴァリアブルローラーフォイルを選択しました'
-          client.link_user_rich_menu(event['source']['userId'], 'richmenu-e98175308059225f4e439d161254e5b0')
+          client.link_user_rich_menu(event['source']['userId'], richmenu_valifoi)
+        elsif text_from == 'ランダム'
+          buki_ary = [
+            "スプラシューターを使ってみましょう。\n サブはキューバンボム、スペシャルはウルトラショットです。",
+            "ソイチューバーカスタムを使ってみましょう。\n サブはタンサンボム、スペシャルはウルトラハンコです。",
+            "ヴァリアブルローラーフォイルを使ってみましょう。\n サブはキューバンボム、スペシャルはスミナガシートです。"
+          ]
+          text_to = buki_ary.shuffle[0]
         end
         message = {
           type: 'text',
@@ -56,9 +67,9 @@ post '/callback' do
         client.unlink_user_rich_menu(event['source']['userId'])
       elsif event['postback']['data'] == 'random'
         richmenu_ary = [
-          'richmenu-415ab9dd80d1d227cf4bd3da80b5cac3',
-          'richmenu-8e0cbf7a321ea3d76735d4027d48adc1',
-          'richmenu-e98175308059225f4e439d161254e5b0'
+          richmenu_sushi,
+          richmenu_soycas,
+          richmenu_valifoi
         ]
         client.link_user_rich_menu(event['source']['userId'], richmenu_ary.shuffle[0])
       end
