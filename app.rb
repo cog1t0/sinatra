@@ -54,7 +54,7 @@ post '/callback' do
     when Line::Bot::Event::Postback
       message = {
           type: 'text',
-          text: event.postback
+          text: event['postback']['data']
         }
         client.reply_message(event['replyToken'], message)
     end
